@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/streaming-platforms-analytics/static/css/main.073c9b0a.css",
+    "main.js": "/streaming-platforms-analytics/static/js/main.d7cc44f3.js",
+    "static/js/787.0d82c0d2.chunk.js": "/streaming-platforms-analytics/static/js/787.0d82c0d2.chunk.js",
+    "static/media/logo.svg": "/streaming-platforms-analytics/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/streaming-platforms-analytics/index.html",
+    "main.073c9b0a.css.map": "/streaming-platforms-analytics/static/css/main.073c9b0a.css.map",
+    "main.d7cc44f3.js.map": "/streaming-platforms-analytics/static/js/main.d7cc44f3.js.map",
+    "787.0d82c0d2.chunk.js.map": "/streaming-platforms-analytics/static/js/787.0d82c0d2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.d7cc44f3.js"
+  ]
+}
