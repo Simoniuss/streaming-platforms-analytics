@@ -15,7 +15,22 @@ const lightTheme = createTheme({
             paper: '#f3ece6'
         },
     },
+    typography: {
+        fontFamily: [
+            'Roboto Mono',
+            'Space Mono',
+            'Helvetica Neue',
+            'Arial',
+            'sans-serif'
+        ].join(','),
+        fontSize: 14,
+        button: {
+            textTransform: 'none'
+        }
+    },
+    spacing: 10
 });
+
 
 const darkTheme = createTheme({
     palette: {
@@ -32,6 +47,20 @@ const darkTheme = createTheme({
             paper: '#0e1218'
         },
     },
+    typography: {
+        fontFamily: [
+            'Roboto Mono',
+            'Space Mono',
+            'Helvetica Neue',
+            'Arial',
+            'sans-serif'
+        ].join(','),
+        fontSize: 12,
+        button: {
+            textTransform: 'none'
+        }
+    },
+    spacing: 10
 });
 
 export { lightTheme, darkTheme };
