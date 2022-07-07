@@ -16,7 +16,7 @@ class LogoMobile extends React.Component {
                 <InsightsIcon sx={{ fontSize: 25, my:1, mr: 1 }} />
                 <Typography variant="subtitle1" 
                 component="a" 
-                href="#"
+                href={process.env.PUBLIC_URL + '/'}
                 sx={{ color: 'inherit', textDecoration: 'none', flexGrow: 1}}>
                     {this.state.title}
                 </Typography>
