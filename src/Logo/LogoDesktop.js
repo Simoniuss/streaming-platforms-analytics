@@ -16,7 +16,7 @@ class LogoDesktop extends React.Component {
                 <InsightsIcon sx={{ fontSize: 50, my:1, mr: 2 }}/>
                 <Typography variant="h5" 
                 component="a" 
-                href="/"
+                href="#"
                 sx={{ color: 'inherit', textDecoration: 'none', flexGrow: 1 }}>
                     {this.state.title}
                 </Typography>
