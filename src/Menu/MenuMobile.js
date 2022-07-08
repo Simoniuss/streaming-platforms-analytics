@@ -57,7 +57,7 @@ class MenuMobile extends React.Component {
 
     render() {
         return (
-            <Box sx={{ justifyContent: 'flex-end'}}>
+            <Box sx={{ flexGrow: 1, justifyContent: 'flex-start'}}>
                 <IconButton
                 aria-label="menu"
                 aria-controls="menu-mobile"
@@ -71,12 +71,12 @@ class MenuMobile extends React.Component {
                 anchorEl={this.state.anchorEl}
                 anchorOrigin={{
                     vertical: 'bottom',
-                    horizontal: 'right',
+                    horizontal: 'left',
                 }}
                 keepMounted
                 transformOrigin={{
                     vertical: 'top',
-                    horizontal: 'right',
+                    horizontal: 'left',
                 }}
                 open={Boolean(this.state.anchorEl)}
                 onClose={this.handleCloseMenu}

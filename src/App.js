@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme, darkTheme} from './Theme/Theme';
 import { CssBaseline } from '@mui/material/';
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 import logo from './img/sauron.png';
 import './css/App.css';
 
@@ -47,6 +48,7 @@ class App extends React.Component {
 						<img src={logo} className="App-logo" alt="logo" />
 						<img src={logo} className="App-logo-reverse" alt="logo" />
 					</div>
+					<Footer />
 				</ThemeProvider>
 			</React.StrictMode>
 		);

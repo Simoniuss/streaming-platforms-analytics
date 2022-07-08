@@ -12,7 +12,8 @@ const lightTheme = createTheme({
         },
         background: {
             default: '#F9F2ED',
-            paper: '#f3ece6'
+            paper: '#f3ece6',
+            contrastText: '#0c0c18'
         },
     },
     typography: {
@@ -44,7 +45,8 @@ const darkTheme = createTheme({
         },
         background: {
             default: '#0c0c18',
-            paper: '#0e1218'
+            paper: '#0e1218',
+            contrastText: '#ffffff'
         },
     },
     typography: {

@@ -17,14 +17,14 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mobileView: window.innerWidth < 600
+            mobileView: window.innerWidth < 800
         };
         this.displayMobile = this.displayMobile.bind(this);
         this.displayDesktop = this.displayDesktop.bind(this);
     }
 
     setResponsiveness = () => {
-        if(window.innerWidth < 600) {
+        if(window.innerWidth < 800) {
             this.setState({mobileView:true});
         }
         else {
@@ -56,11 +56,11 @@ class Header extends React.Component {
     displayMobile() {
         return (
             <Toolbar>
+                <MenuMobile />
                 <LogoMobile />
-                <IconButton onClick={this.props.toggle}>
+                <IconButton onClick={this.props.toggle} sx={{ flexGrow: 1, justifyContent: 'flex-end'}}>
                     {this.props.dark ? <DarkModeIcon fontSize='small'/> : <LightModeIcon fontSize='small' sx={{ color: 'primary.contrastText' }}/>}
                 </IconButton>
-                <MenuMobile />
             </Toolbar>
         )
     }
