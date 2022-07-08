@@ -20,10 +20,10 @@ class LogoMobile extends React.Component {
             flexGrows: 1 }}>
                 <InsightsIcon sx={{ display: { xs: 'none', sm: 'block' }, 
                 fontSize: 25, my:1, mr: 1 }} />
-                <Typography variant="h6" 
+                <Typography variant='h5'
                 component="a" 
                 href={process.env.PUBLIC_URL + '/'}
-                sx={{ color: 'inherit', textDecoration: 'none', textAlign: 'center', mr: 0}}>
+                sx={{ color: 'inherit', textDecoration: 'none', textAlign: 'center', mr: 0 }}>
                     {this.state.title}
                 </Typography>
             </Box>

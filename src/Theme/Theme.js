@@ -24,7 +24,7 @@ const lightTheme = createTheme({
             'Arial',
             'sans-serif'
         ].join(','),
-        fontSize: 14,
+        fontSize: 12,
         button: {
             textTransform: 'none'
         }
@@ -57,7 +57,7 @@ const darkTheme = createTheme({
             'Arial',
             'sans-serif'
         ].join(','),
-        fontSize: 14,
+        fontSize: 12,
         button: {
             textTransform: 'none'
         }

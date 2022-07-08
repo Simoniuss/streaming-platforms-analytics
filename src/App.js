@@ -1,6 +1,8 @@
 import React from 'react';
+import ReactGA from 'react-ga';
 
-import { ThemeProvider } from '@mui/material/styles';
+
+import { ThemeProvider, responsiveFontSizes } from '@mui/material/styles';
 import { lightTheme, darkTheme} from './Theme/Theme';
 import { CssBaseline } from '@mui/material/';
 import Header from './Header/Header';
@@ -12,6 +14,7 @@ class App extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			trackingID: 'UA-233892080-1',
 			isDark: !window.matchMedia('(prefers-color-scheme: light)').matches,	// true when dark mode or no-preference
 			theme: 'darkTheme'
 		}
@@ -39,9 +42,11 @@ class App extends React.Component {
 	}
 
 	render() {
+		ReactGA.initialize(this.state.trackingID);
+		ReactGA.pageview(window.location.pathname + window.location.search);
 		return (
 			<React.StrictMode>
-				<ThemeProvider theme={this.state.theme}>
+				<ThemeProvider theme={responsiveFontSizes(this.state.theme)}>
       				<CssBaseline/>
       				<Header dark={this.state.isDark} toggle={this.changeColorMode} />
 					<div className='App-header'>

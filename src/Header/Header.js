@@ -17,14 +17,14 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mobileView: window.innerWidth < 800
+            mobileView: window.innerWidth < 900
         };
         this.displayMobile = this.displayMobile.bind(this);
         this.displayDesktop = this.displayDesktop.bind(this);
     }
 
     setResponsiveness = () => {
-        if(window.innerWidth < 800) {
+        if(window.innerWidth < 900) {
             this.setState({mobileView:true});
         }
         else {
