@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/streaming-platforms-analytics/static/css/main.24217a5a.css",
-    "main.js": "/streaming-platforms-analytics/static/js/main.f5cfca07.js",
+    "main.js": "/streaming-platforms-analytics/static/js/main.232818b6.js",
     "static/media/sauron.png": "/streaming-platforms-analytics/static/media/sauron.4dc8e5c45ebb591e167a.png",
     "index.html": "/streaming-platforms-analytics/index.html",
     "main.24217a5a.css.map": "/streaming-platforms-analytics/static/css/main.24217a5a.css.map",
-    "main.f5cfca07.js.map": "/streaming-platforms-analytics/static/js/main.f5cfca07.js.map"
+    "main.232818b6.js.map": "/streaming-platforms-analytics/static/js/main.232818b6.js.map"
   },
   "entrypoints": [
     "static/css/main.24217a5a.css",
-    "static/js/main.f5cfca07.js"
+    "static/js/main.232818b6.js"
   ]
 }
