@@ -8,6 +8,7 @@ import LogoDesktop from '../Logo/LogoDesktop';
 import LogoMobile from '../Logo/LogoMobile';
 import MenuDesktop from '../Menu/MenuDesktop';
 import MenuMobile from '../Menu/MenuMobile';
+import GAEvent from '../GAEvent';
 
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
@@ -46,7 +47,9 @@ class Header extends React.Component {
             <Toolbar>
                 <LogoDesktop />
                 <MenuDesktop />
-                <IconButton onClick={this.props.toggle}>
+                <IconButton onClick={ () => {
+                    GAEvent('Header', 'Dark', this.props.dark.toString());
+                    this.props.toggle();}}>
                     {this.props.dark ? <DarkModeIcon fontSize='medium'/> : <LightModeIcon fontSize='medium' sx={{ color: 'primary.contrastText' }}/>}
                 </IconButton>
             </Toolbar>
@@ -58,7 +61,10 @@ class Header extends React.Component {
             <Toolbar>
                 <MenuMobile />
                 <LogoMobile />
-                <IconButton onClick={this.props.toggle} sx={{ flexGrow: 1, justifyContent: 'flex-end'}}>
+                <IconButton onClick={ () => {
+                    GAEvent('Header', 'Dark', this.props.dark.toString());
+                    this.props.toggle();}}
+                     sx={{ flexGrow: 1, justifyContent: 'flex-end'}}>
                     {this.props.dark ? <DarkModeIcon fontSize='small'/> : <LightModeIcon fontSize='small' sx={{ color: 'primary.contrastText' }}/>}
                 </IconButton>
             </Toolbar>

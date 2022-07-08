@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import DialogUse from '../Dialog/DialogUse';
 import DialogAbout from '../Dialog/DialogAbout';
+import GAEvent from '../GAEvent';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -46,17 +47,27 @@ class MenuDesktop extends React.Component {
         return (
             <Box sx={{ justifyContent: 'flex-end'}}>
                 <Stack direction='row' >
-                    <Button onClick={this.handleOpenDialogUse} startIcon={<SettingsIcon/>} sx={{ color: 'primary.contrastText' }}>
+                    <Button onClick={ () => {
+                        GAEvent('Menu', 'How it works', 'Desktop');
+                        this.handleOpenDialogUse();}}
+                        startIcon={<SettingsIcon/>} 
+                        sx={{ color: 'primary.contrastText' }}>
                         <Typography sx={{ typography: { sm: 'subtitle2', md: 'subtitle1' } }}>How it works</Typography>
                     </Button>
                     <DialogUse 
                     open={this.state.openDialogUse}
                     handleClose={this.handleCloseDialogUse}
                     />
-                    <Button target="_blank" href="https://github.com/Simoniuss/streaming-platforms-analytics" startIcon={<GitHubIcon/>} sx={{ color: 'primary.contrastText' }}>
+                    <Button onClick={GAEvent('Menu', 'Repo', 'Desktop')}
+                    target="_blank" href="https://github.com/Simoniuss/streaming-platforms-analytics" 
+                    startIcon={<GitHubIcon/>} sx={{ color: 'primary.contrastText' }}>
                         <Typography sx={{ typography: { sm: 'subtitle2', md: 'subtitle1' } }}>Source code</Typography>
                     </Button>
-                    <Button onClick={this.handleOpenDialogAbout} startIcon={<InfoOutlinedIcon/>} sx={{ color: 'primary.contrastText' }}>
+                    <Button onClick={ () => {
+                        GAEvent('Menu', 'About', 'Desktop');
+                        this.handleOpenDialogAbout();}}
+                        startIcon={<InfoOutlinedIcon/>} 
+                        sx={{ color: 'primary.contrastText' }}>
                         <Typography sx={{ typography: { sm: 'subtitle2', md: 'subtitle1' } }}>About me</Typography>
                     </Button>
                     <DialogAbout

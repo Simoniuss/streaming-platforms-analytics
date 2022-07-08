@@ -8,6 +8,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import DialogUse from '../Dialog/DialogUse';
 import DialogAbout from '../Dialog/DialogAbout';
+import GAEvent from '../GAEvent';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -82,6 +83,7 @@ class MenuMobile extends React.Component {
                 onClose={this.handleCloseMenu}
                 >
                     <MenuItem onClick={() => {
+                        GAEvent('Menu', 'How it works', 'Mobile');
                         this.handleCloseMenu();
                         this.handleOpenDialogUse();
                     }}>
@@ -95,7 +97,9 @@ class MenuMobile extends React.Component {
                     handleClose={this.handleCloseDialogUse}
                     />
                 <MenuItem 
-                onClick={this.handleCloseMenu}
+                onClick={() => {
+                    GAEvent('Menu', 'Repo', 'Mobile');
+                    this.handleCloseMenu();}}
                 href="https://github.com/Simoniuss/streaming-platforms-analytics"
                 target="_blank"
                 component="a"
@@ -106,6 +110,7 @@ class MenuMobile extends React.Component {
                     <Typography variant="subtitle2">Source code</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => {
+                    GAEvent('Menu', 'About', 'Mobile');
                     this.handleCloseMenu();
                     this.handleOpenDialogAbout();
                     }}>

@@ -34,7 +34,8 @@ class Footer extends React.Component {
                          href='https://www.linkedin.com/in/simonebaccile' target='_blank' >
                             <LinkedInIcon sx={{ color: 'background.contrastText', m: 0.5, fontSize: 30 }}/>
                         </Link>
-                        <Link href='https://github.com/Simoniuss' target='_blank'>
+                        <Link onClick={GAEvent('Footer', 'Github', '')} 
+                        href='https://github.com/Simoniuss' target='_blank'>
                             <GitHubIcon sx={{ color: 'background.contrastText', m: 0.5, fontSize: 30 }}/>
                         </Link>
                     </Stack>
