@@ -7,8 +7,8 @@ import { lightTheme, darkTheme} from './Theme/Theme';
 import { CssBaseline } from '@mui/material/';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import logo from './img/sauron.png';
-import './css/App.css';
+import Dashboard from './Dashboard/Dashboard';
+//import './css/App.css';
 
 class App extends React.Component {
 	constructor(props) {
@@ -49,10 +49,7 @@ class App extends React.Component {
 				<ThemeProvider theme={responsiveFontSizes(this.state.theme)}>
       				<CssBaseline/>
       				<Header dark={this.state.isDark} toggle={this.changeColorMode} />
-					<div className='App-header'>
-						<img src={logo} className="App-logo" alt="logo" />
-						<img src={logo} className="App-logo-reverse" alt="logo" />
-					</div>
+					<Dashboard />
 					<Footer />
 				</ThemeProvider>
 			</React.StrictMode>

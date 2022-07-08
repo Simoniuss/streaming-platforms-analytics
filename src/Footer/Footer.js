@@ -11,7 +11,9 @@ import GAEvent from '../GAEvent';
 class Footer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            copyright: 'Copyright \u00A92022 All rights reserved.'
+        };
     }
 
     render() {
@@ -25,9 +27,10 @@ class Footer extends React.Component {
                 flexGrows: 1,
                 bgcolor: 'background.paper',
                 color: 'background.contrastText',
-                px: 2, py: 0}}>
+                px: 2, py: 0, bottom: 0, position: 'relative', width: '100%'
+                }}>
                     <Box>
-                        <Typography variant='caption'>Copyright &copy;2022 All rights reserved.</Typography>
+                        <Typography variant='caption'>{this.state.copyright}</Typography>
                     </Box>
                     <Stack direction='row'>
                         <Link onClick={GAEvent('Footer', 'Linkedin', '')}
