@@ -4,10 +4,10 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 
-import LogoDesktop from '../Logo/LogoDesktop';
-import LogoMobile from '../Logo/LogoMobile';
-import MenuDesktop from '../Menu/MenuDesktop';
-import MenuMobile from '../Menu/MenuMobile';
+import LogoDesktop from './Logo/LogoDesktop';
+import LogoMobile from './Logo/LogoMobile';
+import MenuDesktop from './Menu/MenuDesktop';
+import MenuMobile from './Menu/MenuMobile';
 import GAEvent from '../GAEvent';
 
 import DarkModeIcon from '@mui/icons-material/DarkMode';

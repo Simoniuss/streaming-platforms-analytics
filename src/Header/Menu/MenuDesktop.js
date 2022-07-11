@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import DialogUse from '../Dialog/DialogUse';
 import DialogAbout from '../Dialog/DialogAbout';
-import GAEvent from '../GAEvent';
+import GAEvent from '../../GAEvent';
 
 import SettingsIcon from '@mui/icons-material/Settings';
 import GitHubIcon from '@mui/icons-material/GitHub';
