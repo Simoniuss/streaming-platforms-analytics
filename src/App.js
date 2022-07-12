@@ -16,11 +16,11 @@ class App extends React.Component {
 		this.state = {
 			trackingID: 'UA-233892080-1',
 			isDark: !window.matchMedia('(prefers-color-scheme: light)').matches,	// true when dark mode or no-preference
-			theme: 'darkTheme'
+			theme: darkTheme
 		}
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.state.isDark ? 
 		this.setState({theme: darkTheme}) : 
 		this.setState({theme: lightTheme});
@@ -46,12 +46,13 @@ class App extends React.Component {
 		ReactGA.pageview(window.location.pathname + window.location.search);
 		return (
 			<React.StrictMode>
-				<ThemeProvider theme={responsiveFontSizes(this.state.theme)}>
+				{ this.state.theme && (
+				<ThemeProvider theme={responsiveFontSizes(this.state.theme)}> 
       				<CssBaseline/>
       				<Header dark={this.state.isDark} toggle={this.changeColorMode} />
 					<Dashboard />
 					<Footer />
-				</ThemeProvider>
+				</ThemeProvider> )}
 			</React.StrictMode>
 		);
 	}
