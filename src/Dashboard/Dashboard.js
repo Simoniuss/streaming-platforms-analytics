@@ -55,7 +55,7 @@ class Dashboard extends React.Component {
         return (
             <Container display= 'flex' maxWidth="lg" sx={{ mt: 4, mb: 4, minHeight: '100vh'}}>
                 <Grid container spacing={3} flexDirection='row'>
-                    <Grid item xs={12} md={10} lg={10}>
+                    <Grid item xs={10} md={8} lg={6}>
                         <Paper
                         sx={{
                         p: 2,
@@ -64,7 +64,7 @@ class Dashboard extends React.Component {
                         alignItems: 'center',
                         }}>
                             <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <Treemap data={this.state.data} width={800} height={800} />
+                                <Treemap data={this.state.data} width={500} height={500} />
                             </Suspense>
                         </Paper>
                     </Grid>
