@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/streaming-platforms-analytics/static/css/main.24217a5a.css",
-    "main.js": "/streaming-platforms-analytics/static/js/main.c60b667f.js",
-    "static/js/990.3d17f12d.chunk.js": "/streaming-platforms-analytics/static/js/990.3d17f12d.chunk.js",
+    "main.js": "/streaming-platforms-analytics/static/js/main.568b6f2d.js",
+    "static/js/990.e20ac76a.chunk.js": "/streaming-platforms-analytics/static/js/990.e20ac76a.chunk.js",
     "static/js/150.6e8e5dd0.chunk.js": "/streaming-platforms-analytics/static/js/150.6e8e5dd0.chunk.js",
     "static/media/sauron.png": "/streaming-platforms-analytics/static/media/sauron.4dc8e5c45ebb591e167a.png",
     "static/media/data.csv": "/streaming-platforms-analytics/static/media/data.8219e27131bd920d4651.csv",
     "index.html": "/streaming-platforms-analytics/index.html",
     "main.24217a5a.css.map": "/streaming-platforms-analytics/static/css/main.24217a5a.css.map",
-    "main.c60b667f.js.map": "/streaming-platforms-analytics/static/js/main.c60b667f.js.map",
-    "990.3d17f12d.chunk.js.map": "/streaming-platforms-analytics/static/js/990.3d17f12d.chunk.js.map",
+    "main.568b6f2d.js.map": "/streaming-platforms-analytics/static/js/main.568b6f2d.js.map",
+    "990.e20ac76a.chunk.js.map": "/streaming-platforms-analytics/static/js/990.e20ac76a.chunk.js.map",
     "150.6e8e5dd0.chunk.js.map": "/streaming-platforms-analytics/static/js/150.6e8e5dd0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.24217a5a.css",
-    "static/js/main.c60b667f.js"
+    "static/js/main.568b6f2d.js"
   ]
 }
