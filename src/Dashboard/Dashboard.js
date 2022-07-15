@@ -11,6 +11,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
+
+
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 //import GAEvent from '../GAEvent';
@@ -21,6 +23,7 @@ import logo from '../img/sauron.png';
 import '../css/App.css';
 
 const Treemap = React.lazy(() => import('./VisualizationComponents/Treemap'));
+const Counter = React.lazy(() => import('./VisualizationComponents/Counter'));
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -30,7 +33,7 @@ class Dashboard extends React.Component {
             platform: null,
             type: null,
             genre: null,
-            openDialogInfo: false,
+            openDialogInfo: false
         };
         this.handleOpenDialogInfo = this.handleOpenDialogInfo.bind(this);
         this.handleCloseDialogInfo = this.handleCloseDialogInfo.bind(this);
@@ -78,6 +81,7 @@ class Dashboard extends React.Component {
         return (
             <Container display= 'flex' maxWidth="lg" sx={{ mt: 4, mb: 4, minHeight: '100vh'}}>
                 <Grid container spacing={3} flexDirection='row'>
+
                     {/* Button controller */}
                     <Grid item xs={12}>
                         <Paper sx={{
@@ -140,6 +144,7 @@ class Dashboard extends React.Component {
                                                 .map(d => d.genre)
                                                 .flat()
                                                 .filter((value, index, self) => self.indexOf(value) === index)
+                                                .sort()
                                                 .map(filteredData => (
                                                     <MenuItem value={filteredData}>
                                                         {filteredData}
@@ -170,7 +175,9 @@ class Dashboard extends React.Component {
                             </Stack>
                         </Paper>
                     </Grid>
-                    <Grid item xs={12} md={10} lg={8}>
+
+                    {/* Treemap */}
+                    <Grid item xs={12} md={8} lg={8}>
                         <Paper 
                         sx={{
                         p: 2,
@@ -185,14 +192,19 @@ class Dashboard extends React.Component {
                             </Suspense>
                         </Paper>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={6} md={4} lg={4}>
                         <Paper
                         sx={{
                         p: 2,
                         display: 'flex',
                         flexDirection: 'column',
+                        alignItems: 'center',
                         }}>
-                            <img src={logo} className="App-logo-reverse" alt="logo" />
+                            <Typography variant="h5"> Statistics </Typography>
+                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
+                                <Counter data={this.state.data} platform={this.state.platform}
+                                 type={this.state.type} genre={this.state.genre} />
+                            </Suspense>
                         </Paper>
                     </Grid>
                     <Grid item>
@@ -213,6 +225,16 @@ class Dashboard extends React.Component {
                         flexDirection: 'column',
                         }}>
                             <img src={logo} className="App-logo-reverse" alt="logo" />
+                        </Paper>
+                    </Grid>
+                    <Grid item>
+                        <Paper
+                        sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        }}>
+                            <img src={logo} className="App-logo" alt="logo" />
                         </Paper>
                     </Grid>
                 </Grid>

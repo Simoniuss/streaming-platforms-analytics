@@ -59,6 +59,7 @@ class DialogInfo extends React.Component {
                             {this.props.data.filter(d => this.props.platform? d.platform === this.props.platform : true)
                                 .filter(d => this.props.type? d.type === this.props.type : true)
                                 .filter(d => this.props.genre? d.genre.includes(this.props.genre) : true)
+                                .sort(function(a,b) { return ('' + a.title).localeCompare(b.title);})
                                 .map((row) => (
                                 <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell align="left">
