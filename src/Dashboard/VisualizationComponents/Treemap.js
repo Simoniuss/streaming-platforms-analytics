@@ -12,7 +12,7 @@ class Treemap extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            ref: React.createRef()
+            ref: React.createRef(),
         }
         this.createTreemap = this.createTreemap.bind(this)
     }
@@ -32,10 +32,19 @@ class Treemap extends React.Component {
         const x = scaleLinear().rangeRound([0, this.props.width])
         const y = scaleLinear().rangeRound([0, this.props.height])
 
+        var platform = this.props.platform
+        var type = this.props.type
+        var genre = this.props.genre
+
         // color of boxes
         var color = scaleOrdinal()
             .domain(['Netflix', 'Prime', 'Disney'])
             .range([ "#B81D24", "#00A8E1", "#113CCF"])
+
+        var txtColor = scaleOrdinal()
+            .domain(['Netflix', 'Prime', 'Disney'])
+            .range([ "white", "black", "white"])
+
 
         // group by platform, type, and the first genre
         var groups = rollup(this.props.data,
@@ -43,20 +52,21 @@ class Treemap extends React.Component {
                             d => d.platform,
                             d => d.type,
                             function(d) { return d.genre[0]; }
-                            );
-
+                            )
+        
         // root hierarchy 
         var root = hierarchy(groups);
-        root.sum(function(d) { return d[1];});
+        root.sum(function(d) { return d[1];})
+            .sort((a, b) => b.height - a.height || b.value - a.value);
 
         // treemap layout
         treemap()
             .size([this.props.width, this.props.height])
-            .paddingTop(30)
-            .paddingRight(3)
-            .paddingLeft(3)
-            .paddingBottom(3)
-            .paddingInner(10)
+            .paddingTop(20)
+            .paddingRight(1)
+            .paddingLeft(1)
+            .paddingBottom(2)
+            .paddingInner(0)
         (root)
         
         //console.log(this.props.data[1])
@@ -66,6 +76,7 @@ class Treemap extends React.Component {
         function render(root) {
             var depth = root.depth+1
 
+            // used to make responsive the treemap
             x.domain([root.x0, root.x1])
             y.domain([root.y0, root.y1])
 
@@ -76,12 +87,9 @@ class Treemap extends React.Component {
 
                 // view only two levels of the hierarchy at the same time 
                 .filter(d => d.depth === depth || d.depth === depth-1)
+                //.filter(d => d.data[0] === platform)
                 .append("rect")
-                    /*.attr('x', function (d) { return d.x0; })
-                    .attr('y', function (d) { return d.y0; })
-                    .attr('width', function (d) { return d.x1 - d.x0; })
-                    .attr('height', function (d) { return d.y1 - d.y0; })
-                    */.attr('x', function (d) { return x(d.x0); })
+                    .attr('x', function (d) { return x(d.x0); })
                     .attr('y', function (d) { return y(d.y0); })
                     .attr('width', function (d) { return x(d.x1) - x(d.x0); })
                     .attr('height', function (d) { return y(d.y1) - y(d.y0); })
@@ -90,11 +98,17 @@ class Treemap extends React.Component {
                         return d.depth === 1 ? color(d.data[0]) 
                         : d.depth === 2 ? color(d.parent.data[0])
                         : d.depth === 3 ? color(d.parent.parent.data[0])
-                        : 'transparent'
+                        : '#282626'
                     })
                     .attr('cursor', 'pointer')
                     //.on('click', (event, d) => d === root? console.log('root') : console.log(d.data[0]));
-                    .on('click', (event, d) => d === root? zoomout(root) : zoomin(d));
+                    .on('click', function(event, d) { 
+                        if (d === root) {
+                            zoomout(root);
+                        }
+                        else { 
+                            zoomin(d);
+                        }})
             
             // set text of treemap
             select(node)
@@ -103,25 +117,39 @@ class Treemap extends React.Component {
                 .enter()
                 .filter(d => d.depth === depth || d.depth === depth-1)
                 .append("text")
-                    .attr("x", function(d){ return x(d.x0)})
-                    .attr("y", function(d){ return y(d.y0)})
-                    .text(function(d){ return d.depth === 0? "All: " + d.value : d.data[0] + ": " + d.value})
-                    .attr("font-size", "1.2em")
+                    .attr("x", function(d){ return x(d.x0)+5})
+                    .attr("y", function(d){ return y(d.y0)+15})
+                    .text(function(d){ 
+                        return d.depth === 0? "All: " + d.value
+                        : x(d.x1)-x(d.x0) > 100? d.data[0] + ": " + d.value
+                        : x(d.x1)-x(d.x0) > 50? d.data[0]
+                        : "..."
+                    })
+                    .attr("font-size", function(d) {
+                        return x(d.x1)-x(d.x0) > 100 && y(d.y1)-y(d.y0) > 20? "1em"
+                        : x(d.x1)-x(d.x0) > 50 && y(d.y1)-y(d.y0) > 10? "0.8em"
+                        : "0.3em"})
                     .attr('font-weight', 'bold')
-                    .attr("fill", "white")
+                    .attr("fill", function(d) {
+                        return d.depth === 1 ? txtColor(d.data[0]) 
+                        : d.depth === 2 ? txtColor(d.parent.data[0])
+                        : d.depth === 3 ? txtColor(d.parent.parent.data[0])
+                        : 'white'
+                    })
         }
 
         function zoomin(root) {
-            if (root.parent) { 
+            if (root.parent) {
+                console.log(platform)
                 select(node)
-                    .selectAll("*")
+                    .selectAll('*')
                     .remove()
                 render(root)
             }
         }
 
         function zoomout(root) {
-            if (root.parent) {  
+            if (root.parent) { 
                 select(node)
                     .selectAll("*")
                     .remove()
@@ -129,14 +157,13 @@ class Treemap extends React.Component {
             }
         }
 
-
         render(root)
     }
 
 render() {
-      return (
-        <svg ref={this.state.ref} viewBox={`-5 -20 ${this.props.width+50} ${this.props.height+20}`} />
-      );
+    return (
+        <svg ref={this.state.ref} viewBox={`-5 -20 ${this.props.width+20} ${this.props.height+20}`}/>
+    );
    }
 }
 
