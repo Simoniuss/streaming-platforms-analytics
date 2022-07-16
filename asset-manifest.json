@@ -1,26 +1,28 @@
 {
   "files": {
     "main.css": "/streaming-platforms-analytics/static/css/main.24217a5a.css",
-    "main.js": "/streaming-platforms-analytics/static/js/main.64e36327.js",
-    "static/js/349.c61d1cab.chunk.js": "/streaming-platforms-analytics/static/js/349.c61d1cab.chunk.js",
+    "main.js": "/streaming-platforms-analytics/static/js/main.fffc7286.js",
+    "static/js/141.5dc9833d.chunk.js": "/streaming-platforms-analytics/static/js/141.5dc9833d.chunk.js",
     "static/js/476.cc375c6d.chunk.js": "/streaming-platforms-analytics/static/js/476.cc375c6d.chunk.js",
-    "static/js/496.3ce9ab05.chunk.js": "/streaming-platforms-analytics/static/js/496.3ce9ab05.chunk.js",
-    "static/js/807.c84e8ca7.chunk.js": "/streaming-platforms-analytics/static/js/807.c84e8ca7.chunk.js",
-    "static/js/174.8f280c97.chunk.js": "/streaming-platforms-analytics/static/js/174.8f280c97.chunk.js",
+    "static/js/496.bc62d49f.chunk.js": "/streaming-platforms-analytics/static/js/496.bc62d49f.chunk.js",
+    "static/js/807.94c3cdec.chunk.js": "/streaming-platforms-analytics/static/js/807.94c3cdec.chunk.js",
+    "static/js/759.1da18471.chunk.js": "/streaming-platforms-analytics/static/js/759.1da18471.chunk.js",
+    "static/js/716.75b61767.chunk.js": "/streaming-platforms-analytics/static/js/716.75b61767.chunk.js",
     "static/media/sauron.png": "/streaming-platforms-analytics/static/media/sauron.4dc8e5c45ebb591e167a.png",
     "static/media/data.csv": "/streaming-platforms-analytics/static/media/data.b2d070767f7211ceacba.csv",
     "static/media/revenues.csv": "/streaming-platforms-analytics/static/media/revenues.576bd8ddc03265c9eb93.csv",
     "index.html": "/streaming-platforms-analytics/index.html",
     "main.24217a5a.css.map": "/streaming-platforms-analytics/static/css/main.24217a5a.css.map",
-    "main.64e36327.js.map": "/streaming-platforms-analytics/static/js/main.64e36327.js.map",
-    "349.c61d1cab.chunk.js.map": "/streaming-platforms-analytics/static/js/349.c61d1cab.chunk.js.map",
+    "main.fffc7286.js.map": "/streaming-platforms-analytics/static/js/main.fffc7286.js.map",
+    "141.5dc9833d.chunk.js.map": "/streaming-platforms-analytics/static/js/141.5dc9833d.chunk.js.map",
     "476.cc375c6d.chunk.js.map": "/streaming-platforms-analytics/static/js/476.cc375c6d.chunk.js.map",
-    "496.3ce9ab05.chunk.js.map": "/streaming-platforms-analytics/static/js/496.3ce9ab05.chunk.js.map",
-    "807.c84e8ca7.chunk.js.map": "/streaming-platforms-analytics/static/js/807.c84e8ca7.chunk.js.map",
-    "174.8f280c97.chunk.js.map": "/streaming-platforms-analytics/static/js/174.8f280c97.chunk.js.map"
+    "496.bc62d49f.chunk.js.map": "/streaming-platforms-analytics/static/js/496.bc62d49f.chunk.js.map",
+    "807.94c3cdec.chunk.js.map": "/streaming-platforms-analytics/static/js/807.94c3cdec.chunk.js.map",
+    "759.1da18471.chunk.js.map": "/streaming-platforms-analytics/static/js/759.1da18471.chunk.js.map",
+    "716.75b61767.chunk.js.map": "/streaming-platforms-analytics/static/js/716.75b61767.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.24217a5a.css",
-    "static/js/main.64e36327.js"
+    "static/js/main.fffc7286.js"
   ]
 }
