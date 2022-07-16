@@ -19,11 +19,14 @@ import InfoIcon from '@mui/icons-material/InfoOutlined';
 
 import DialogInfo from './VisualizationComponents/DialogInfo';
 import data from '../data/data.csv';
+import revenues from '../data/revenues.csv';
 import logo from '../img/sauron.png';
 import '../css/App.css';
 
 const Treemap = React.lazy(() => import('./VisualizationComponents/Treemap'));
 const Counter = React.lazy(() => import('./VisualizationComponents/Counter'));
+const RevenuesLinePlot = React.lazy(() => import('./VisualizationComponents/RevenuesLinePlot'));
+const SubsLinePlot = React.lazy(() => import('./VisualizationComponents/SubsLinePlot'));
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -33,6 +36,7 @@ class Dashboard extends React.Component {
             platform: null,
             type: null,
             genre: null,
+            revenues: null,
             openDialogInfo: false
         };
         this.handleOpenDialogInfo = this.handleOpenDialogInfo.bind(this);
@@ -64,6 +68,19 @@ class Dashboard extends React.Component {
         //this.state.data? console.log(this.state.data[1]) : console.log('no data');
     }
 
+    loadRevenues = async () => {
+        const r = await csv(revenues, function(d) {
+            return {
+                platform: d.Platform,
+                quarter: d.Year+' '+d.Quarter,
+                revenue: +d.Revenue,
+                subs: +d.Subscriptions
+            };
+          })
+        this.setState({ revenues: r });
+        //this.state.revenues? console.log(this.state.revenues[1]) : console.log('no data');
+    }
+
     handleOpenDialogInfo() {
         this.setState({openDialogInfo: true});
     }
@@ -74,6 +91,7 @@ class Dashboard extends React.Component {
 
     componentDidMount() {
         this.loadCSV();
+        this.loadRevenues();
     }
 
 
@@ -187,12 +205,12 @@ class Dashboard extends React.Component {
                         }}>
                             <Typography variant="h5"> Streaming platforms treemap </Typography>
                             <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <Treemap data={this.state.data} width={800} height={800} 
+                                <Treemap data={this.state.data} width={700} height={500} 
                                     platform={this.state.platform} type={this.state.type} genre={this.state.genre} />
                             </Suspense>
                         </Paper>
                     </Grid>
-                    <Grid item xs={6} md={4} lg={4}>
+                    <Grid item xs={12} md={4} lg={4}>
                         <Paper
                         sx={{
                         p: 2,
@@ -207,14 +225,38 @@ class Dashboard extends React.Component {
                             </Suspense>
                         </Paper>
                     </Grid>
-                    <Grid item>
+                    <Grid item xs={12} md={6} lg={6}>
                         <Paper
                         sx={{
                         p: 2,
                         display: 'flex',
                         flexDirection: 'column',
+                        alignItems: 'center'
                         }}>
-                            <img src={logo} className="App-logo" alt="logo"/>
+                            <Typography variant="h5"> Revenues </Typography>
+                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
+                                <RevenuesLinePlot rev={this.state.revenues}
+                                width={1000} height={500}  
+                                platform={this.state.platform} />
+                            </Suspense>
+                            <Typography variant="caption" sx={{mt:1}}> *Prime Video revenue includes the entire Amazon Prime subscriptions </Typography>
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={6}>
+                        <Paper
+                        sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                        }}>
+                            <Typography variant="h5"> Subscriptions </Typography>
+                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
+                                <SubsLinePlot subs={this.state.revenues}
+                                width={1000} height={500}  
+                                platform={this.state.platform} />
+                            </Suspense>
+                            <Typography variant="caption" sx={{mt:1}}> *Prime Video releases the number of subscribers only at the end of the year </Typography>
                         </Paper>
                     </Grid>
                     <Grid item>

@@ -119,8 +119,8 @@ class Treemap extends React.Component {
                         : "..."
                     })
                     .attr("font-size", function(d) {
-                        return x(d.x1)-x(d.x0) > 100 && y(d.y1)-y(d.y0) > 20? "1.2em"
-                        : x(d.x1)-x(d.x0) > 60 && y(d.y1)-y(d.y0) > 20? "0.8em"
+                        return x(d.x1)-x(d.x0) > 120 && y(d.y1)-y(d.y0) > 20? "1.2em"
+                        : x(d.x1)-x(d.x0) > 80 && y(d.y1)-y(d.y0) > 20? "0.8em"
                         : x(d.x1)-x(d.x0) > 30 && y(d.y1)-y(d.y0) > 20? "0.6em"
                         : "0.4em"})
                     .attr('font-weight', 'bold')
