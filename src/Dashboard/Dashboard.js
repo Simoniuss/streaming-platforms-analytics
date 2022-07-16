@@ -11,6 +11,10 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
 
 
 
@@ -29,6 +33,7 @@ const Treemap = React.lazy(() => import('./VisualizationComponents/Treemap'));
 const Counter = React.lazy(() => import('./VisualizationComponents/Counter'));
 const RevenuesLinePlot = React.lazy(() => import('./VisualizationComponents/RevenuesLinePlot'));
 const SubsLinePlot = React.lazy(() => import('./VisualizationComponents/SubsLinePlot'));
+const VoteHistogram = React.lazy(() => import('./VisualizationComponents/VoteHistogram'));
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -39,7 +44,8 @@ class Dashboard extends React.Component {
             type: null,
             genre: null,
             revenues: null,
-            openDialogInfo: false
+            openDialogInfo: false,
+            ticks: 10
         };
         this.handleOpenDialogInfo = this.handleOpenDialogInfo.bind(this);
         this.handleCloseDialogInfo = this.handleCloseDialogInfo.bind(this);
@@ -91,6 +97,7 @@ class Dashboard extends React.Component {
         this.setState({openDialogInfo: false});
     }
 
+
     componentDidMount() {
         this.loadCSV();
         this.loadRevenues();
@@ -102,6 +109,7 @@ class Dashboard extends React.Component {
             <Container display= 'flex' maxWidth="lg" sx={{ mt: 4, mb: 4, minHeight: '100vh'}}>
                 <ScrollTop />
                 <Grid container spacing={3} flexDirection='row'>
+
                     {/* Button controller */}
                     <Grid item xs={12}>
                         <Paper sx={{
@@ -111,6 +119,7 @@ class Dashboard extends React.Component {
                         alignItems: 'center',
                         }}>
                             <Stack direction="row" justifyContent="center" alignItems='center' spacing={1}>
+
                                 {/* Platform button */}
                                 <FormControl color='background' 
                                 sx={{ display: 'flex', m: 1, width: { xs: 80, sm: 150, md: 200 } }}>
@@ -129,6 +138,7 @@ class Dashboard extends React.Component {
                                         <MenuItem value={null}> All </MenuItem>
                                     </Select>
                                 </FormControl>
+
                                 {/* Type button */}
                                 <FormControl color='background'
                                 sx={{ display: this.state.platform? 'flex' : 'none', m: 1, width: { xs: 80, sm: 150, md: 200 } }}>
@@ -146,6 +156,7 @@ class Dashboard extends React.Component {
                                         <MenuItem value={null}> All </MenuItem>
                                     </Select>
                                 </FormControl>
+
                                 {/* Genre button */}
                                 <FormControl color='background'
                                 sx={{ display: this.state.type? 'flex' : 'none', m: 1, width: { xs: 80, sm: 150, md: 200 } }}>
@@ -196,6 +207,7 @@ class Dashboard extends React.Component {
                         </Paper>
                     </Grid>
 
+
                     {/* Treemap */}
                     <Grid item xs={12} md={8} lg={8}>
                         <Paper 
@@ -212,6 +224,9 @@ class Dashboard extends React.Component {
                             </Suspense>
                         </Paper>
                     </Grid>
+
+
+                    {/* Statistics */}
                     <Grid item xs={12} md={4} lg={4}>
                         <Paper
                         sx={{
@@ -227,6 +242,9 @@ class Dashboard extends React.Component {
                             </Suspense>
                         </Paper>
                     </Grid>
+
+
+                    {/* Revenues */}
                     <Grid item xs={12} md={6} lg={6}>
                         <Paper
                         sx={{
@@ -244,6 +262,9 @@ class Dashboard extends React.Component {
                             <Typography variant="caption" sx={{mt:1}}> *Prime Video revenue includes the entire Amazon Prime subscriptions </Typography>
                         </Paper>
                     </Grid>
+
+
+                    {/* Subscriptions */}
                     <Grid item xs={12} md={6} lg={6}>
                         <Paper
                         sx={{
@@ -261,16 +282,93 @@ class Dashboard extends React.Component {
                             <Typography variant="caption" sx={{mt:1}}> *Prime Video releases the number of subscribers only at the end of the year </Typography>
                         </Paper>
                     </Grid>
-                    <Grid item>
+
+                    {/* Bins selection */}
+                    <Grid item xs={12} md={12} lg={12} sx={{mb:0, pb:0}}>
+                        <Paper
+                        sx={{
+                        p: 0.5,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                        }}>
+                            <FormControl>
+                                    <FormLabel id="number-of-bins" align='center'> # Histogram bins </FormLabel>
+                                    <RadioGroup
+                                    row
+                                    aria-labelledby="number-of-bins"
+                                    name="row-radio-button"
+                                    value={this.state.ticks}
+                                    onChange={ (event) => {
+                                        this.setState({ ticks: event.target.value });
+                                    }}
+                                    >
+                                        <FormControlLabel value={10} control={<Radio />} label="10" />
+                                        <FormControlLabel value={20} control={<Radio />} label="20" />
+                                        <FormControlLabel value={50} control={<Radio />} label="50" />
+                                        <FormControlLabel value={100} control={<Radio />} label="100" />
+                                </RadioGroup>
+                            </FormControl>
+                        </Paper>
+                    </Grid>
+
+
+                    {/* IMDb ratings */}
+                    <Grid item xs={12} md={4} lg={4}>
                         <Paper
                         sx={{
                         p: 2,
                         display: 'flex',
                         flexDirection: 'column',
+                        alignItems: 'center'
                         }}>
-                            <img src={logo} className="App-logo-reverse" alt="logo" />
+                            <Typography variant="h5"> IMDb ratings </Typography>
+                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                    platform={this.state.platform} type={this.state.type}
+                                    genre={this.state.genre} vote='imdb' tick={this.state.ticks}/>
+                            </Suspense>
                         </Paper>
                     </Grid>
+
+
+                    {/* Rotten Tomatoes ratings */}
+                    <Grid item xs={12} md={4} lg={4}>
+                        <Paper
+                        sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                        }}>
+                            <Typography variant="h5"> RottenTomatoes ratings </Typography>
+                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                    platform={this.state.platform} type={this.state.type}
+                                    genre={this.state.genre} vote='rt' tick={this.state.ticks} />
+                            </Suspense>
+                        </Paper>
+                    </Grid>
+
+                    {/* Metacritic ratings */}
+                    <Grid item xs={12} md={4} lg={4}>
+                        <Paper
+                        sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                        }}>
+                            <Typography variant="h5"> Metacritic ratings </Typography>
+                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                    platform={this.state.platform} type={this.state.type}
+                                    genre={this.state.genre} vote='mc' tick={this.state.ticks} />
+                            </Suspense>
+                        </Paper>
+                    </Grid>
+
+                    
                     <Grid item>
                         <Paper
                         sx={{
