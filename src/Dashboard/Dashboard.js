@@ -13,11 +13,13 @@ import Select from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 
 
+
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 //import GAEvent from '../GAEvent';
 
 import DialogInfo from './VisualizationComponents/DialogInfo';
+import ScrollTop from './VisualizationComponents/ScrollTop';
 import data from '../data/data.csv';
 import revenues from '../data/revenues.csv';
 import logo from '../img/sauron.png';
@@ -98,8 +100,8 @@ class Dashboard extends React.Component {
     render() {
         return (
             <Container display= 'flex' maxWidth="lg" sx={{ mt: 4, mb: 4, minHeight: '100vh'}}>
+                <ScrollTop />
                 <Grid container spacing={3} flexDirection='row'>
-
                     {/* Button controller */}
                     <Grid item xs={12}>
                         <Paper sx={{
@@ -116,7 +118,7 @@ class Dashboard extends React.Component {
                                     <Select
                                     id='select-platform'
                                     label='Platform'
-                                    value={this.state.platform}
+                                    value={this.state.platform? this.state.platform : ''}
                                     onChange={ (event) => {
                                         this.setState({ platform: event.target.value, type: null, genre: null });
                                     }}
@@ -134,7 +136,7 @@ class Dashboard extends React.Component {
                                     <Select
                                     id='select-type'
                                     label='Type'
-                                    value={this.state.type}
+                                    value={this.state.type? this.state.type : ''}
                                     onChange={ (event) => {
                                         this.setState({ type: event.target.value, genre: null });
                                     }}
@@ -151,7 +153,7 @@ class Dashboard extends React.Component {
                                     <Select
                                     id='select-genre'
                                     label='Genre'
-                                    value={this.state.genre}
+                                    value={this.state.genre? this.state.genre : ''}
                                     onChange={ (event) => {
                                         this.setState({ genre: event.target.value })
                                     }}

@@ -60,8 +60,8 @@ class DialogInfo extends React.Component {
                                 .filter(d => this.props.type? d.type === this.props.type : true)
                                 .filter(d => this.props.genre? d.genre.includes(this.props.genre) : true)
                                 .sort(function(a,b) { return ('' + a.title).localeCompare(b.title);})
-                                .map((row) => (
-                                <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                .map((row, i) => (
+                                <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                                     <TableCell align="left">
                                         {row.platform}
                                     </TableCell>
@@ -73,8 +73,8 @@ class DialogInfo extends React.Component {
                                     </TableCell>
                                     <TableCell align="left">
                                         <List>
-                                            {row.genre.map((item) => (
-                                            <ListItem sx={{p: 0}}>{item}</ListItem>
+                                            {row.genre.map((item, j) => (
+                                            <ListItem key={j} sx={{p: 0}}>{item}</ListItem>
                                             ))}
                                         </List>
                                     </TableCell>
@@ -83,15 +83,15 @@ class DialogInfo extends React.Component {
                                     </TableCell>
                                     <TableCell align="left">
                                         <List>
-                                            {row.director.map((item) => (
-                                            <ListItem sx={{p: 0}}>{item}</ListItem>
+                                            {row.director.map((item, j) => (
+                                            <ListItem key={j} sx={{p: 0}}>{item}</ListItem>
                                             ))}
                                         </List>
                                     </TableCell>
                                     <TableCell align="left">
                                         <List>
-                                            {row.actors.map((item) => (
-                                            <ListItem sx={{p: 0}}>{item}</ListItem>
+                                            {row.actors.map((item, j) => (
+                                            <ListItem key={j} sx={{p: 0}}>{item}</ListItem>
                                             ))}
                                         </List>
                                     </TableCell>
