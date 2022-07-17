@@ -45,7 +45,7 @@ class MenuDesktop extends React.Component {
 
     render() {
         return (
-            <Box sx={{ justifyContent: 'flex-end'}}>
+            <Box sx={{ justifyContent: 'flex-end' }}>
                 <Stack direction='row' >
                     <Button onClick={ () => {
                         GAEvent('Menu', 'How it works', 'Desktop');

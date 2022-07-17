@@ -98,11 +98,12 @@ class Treemap extends React.Component {
                     .attr('width', function (d) { return x(d.x1) - x(d.x0); })
                     .attr('height', function (d) { return y(d.y1) - y(d.y0); })
                     .style("stroke", "white")
+                    .style("stroke-width", "0.4px")
                     .style("fill", function(d) {
                         return d.depth === 1 ? color(d.data[0]) 
                         : d.depth === 2 ? color(d.parent.data[0])
                         : d.depth === 3 ? color(d.parent.parent.data[0])
-                        : '#282626'
+                        : 'transparent'
                     })
             
             // set text of treemap
@@ -121,8 +122,8 @@ class Treemap extends React.Component {
                     .attr("font-size", function(d) {
                         return x(d.x1)-x(d.x0) > 120 && y(d.y1)-y(d.y0) > 20? "1em"
                         : x(d.x1)-x(d.x0) > 80 && y(d.y1)-y(d.y0) > 20? "0.8em"
-                        : x(d.x1)-x(d.x0) > 60 && y(d.y1)-y(d.y0) > 20? "0.6em"
-                        : x(d.x1)-x(d.x0) > 40 && y(d.y1)-y(d.y0) > 10? "0.4em"
+                        : x(d.x1)-x(d.x0) > 50 && y(d.y1)-y(d.y0) > 10? "0.6em"
+                        : x(d.x1)-x(d.x0) > 30 && y(d.y1)-y(d.y0) > 10? "0.3em"
                         : "0.2em"})
                     .attr('font-weight', 'bold')
                     .attr("fill", function(d) {

@@ -44,7 +44,7 @@ class Header extends React.Component {
 
     displayDesktop() {
         return (
-            <Toolbar>
+            <Toolbar sx={{bgcolor: 'primary.main'}}>
                 <LogoDesktop />
                 <MenuDesktop />
                 <IconButton onClick={ () => {
@@ -58,7 +58,7 @@ class Header extends React.Component {
 
     displayMobile() {
         return (
-            <Toolbar>
+            <Toolbar sx={{bgcolor: 'primary.main'}}>
                 <MenuMobile />
                 <LogoMobile />
                 <IconButton onClick={ () => {
