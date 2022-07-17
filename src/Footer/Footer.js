@@ -25,8 +25,8 @@ class Footer extends React.Component {
                 alignItems: 'center', 
                 alignContent: 'center', 
                 flexGrows: 1,
-                bgcolor: 'background.paper',
-                color: 'background.contrastText',
+                bgcolor: 'primary.main',
+                color: 'primary.contrastText',
                 px: 2, py: 0, bottom: 0, position: 'relative', width: '100%'
                 }}>
                     <Box>
@@ -35,11 +35,11 @@ class Footer extends React.Component {
                     <Stack direction='row'>
                         <Link onClick={GAEvent('Footer', 'Linkedin', '')}
                          href='https://www.linkedin.com/in/simonebaccile' target='_blank' >
-                            <LinkedInIcon sx={{ color: 'background.contrastText', m: 0.5, fontSize: 30 }}/>
+                            <LinkedInIcon sx={{ color: 'primary.contrastText', m: 0.5, fontSize: 30 }}/>
                         </Link>
                         <Link onClick={GAEvent('Footer', 'Github', '')} 
                         href='https://github.com/Simoniuss' target='_blank'>
-                            <GitHubIcon sx={{ color: 'background.contrastText', m: 0.5, fontSize: 30 }}/>
+                            <GitHubIcon sx={{ color: 'primary.contrastText', m: 0.5, fontSize: 30 }}/>
                         </Link>
                     </Stack>
                 </Box>

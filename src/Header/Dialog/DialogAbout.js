@@ -14,8 +14,19 @@ import CloseIcon from '@mui/icons-material/Close';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
+import logo from '../../img/sauron.png';
+import '../../css/App.css';
+
 
 class DialogAbout extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: false
+        };
+    }
+
     render() {
         return (
             <Dialog
@@ -33,11 +44,19 @@ class DialogAbout extends React.Component {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        <Typography variant="body1" fontWeight='bold'> Hi, I'm Simone! &#129446; </Typography>
+                        <Typography variant="body1" fontWeight='bold' onClick={ (event) => {
+                            this.setState({ show: !this.state.show });
+                            setTimeout(() => {
+                                this.setState({ text: !this.state.show });
+                            }, 1000);
+                        }}> 
+                                    Hi, I'm Simone! &#129446; 
+                        </Typography>
                         <Typography variant="body1"> I'm 24 years old and I'm from Abruzzo (Italy) &#9968;&#65039;, the homeland of <i>Arrosticini</i> &#128017;. </Typography>
                         <Typography variant="body1"> Currently, I'm a master's student in computer science at the University of Pisa, with a curricula in Data & Knowledge &#128104;&#127995;&#8205;&#128187;. </Typography>
-                        <Typography variant="body1"> I really like programming, especially the design phase where you have to understand how to fit all the pieces, like a puzzle &#129513;. </Typography>
-                        <Typography variant="body1"> I love to read any kind of book (now I'm crazy about Murakami) &#128218;, and as you can see from this site I love to watch movies and tv series &#127916;. </Typography>
+                        <Typography variant="body1"> I really like programming, especially the design phase where you have to understand how to fit all the pieces, like a puzzle. </Typography>
+                        <div style={{ display: this.state.show? "block" : "none"}} align='center'><img src={logo} className="logo" alt="logo" /></div>
+                        <Typography variant="body1"> I love to read any kind of book &#128218;, and as you can see from this site I love to watch movies and tv series &#127916;. </Typography>
                         <Typography variant="body1"> If you liked the site, and would like to give me some feedback, or just to have a chat, you can contact me: </Typography>
                     </DialogContentText>
                     <Stack direction='row'>
