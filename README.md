@@ -62,7 +62,7 @@ Every time you push your code to GitHub, the site will be updated.
 
 
 # Usage
-TODO: add gifs
+![usage gif](https://github.com/Simoniuss/streaming-platforms-analytics/blob/main/src/img/usage.gif?raw=true)
 
 # License
 Distributed under the MIT License. See [`LICENSE`](https://github.com/Simoniuss/streaming-platforms-analytics/blob/main/LICENSE) for more information.
