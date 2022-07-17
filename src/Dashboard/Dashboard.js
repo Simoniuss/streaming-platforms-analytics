@@ -20,20 +20,20 @@ import FormLabel from '@mui/material/FormLabel';
 
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
-//import GAEvent from '../GAEvent';
 
 import DialogInfo from './VisualizationComponents/DialogInfo';
 import ScrollTop from './VisualizationComponents/ScrollTop';
 import data from '../data/data.csv';
 import revenues from '../data/revenues.csv';
-import logo from '../img/sauron.png';
-import '../css/App.css';
+//import logo from '../img/sauron.png';
+//import '../css/App.css';
 
 const Treemap = React.lazy(() => import('./VisualizationComponents/Treemap'));
 const Counter = React.lazy(() => import('./VisualizationComponents/Counter'));
 const RevenuesLinePlot = React.lazy(() => import('./VisualizationComponents/RevenuesLinePlot'));
 const SubsLinePlot = React.lazy(() => import('./VisualizationComponents/SubsLinePlot'));
 const VoteHistogram = React.lazy(() => import('./VisualizationComponents/VoteHistogram'));
+const TopTen = React.lazy(() => import('./VisualizationComponents/TopTen'));
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -139,6 +139,7 @@ class Dashboard extends React.Component {
                                     </Select>
                                 </FormControl>
 
+
                                 {/* Type button */}
                                 <FormControl color='background'
                                 sx={{ display: this.state.platform? 'flex' : 'none', m: 1, width: { xs: 80, sm: 150, md: 200 } }}>
@@ -185,6 +186,8 @@ class Dashboard extends React.Component {
                                         }
                                     </Select>
                                 </FormControl>
+
+                                {/* Info button */}
                                 <IconButton
                                 aria-label="info"
                                 aria-controls="info-data"
@@ -206,6 +209,7 @@ class Dashboard extends React.Component {
                             </Stack>
                         </Paper>
                     </Grid>
+                    
 
 
                     {/* Treemap */}
@@ -219,7 +223,7 @@ class Dashboard extends React.Component {
                         }}>
                             <Typography variant="h5"> Streaming platforms treemap </Typography>
                             <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <Treemap data={this.state.data} width={700} height={500} 
+                                <Treemap data={this.state.data} width={400} height={300} 
                                     platform={this.state.platform} type={this.state.type} genre={this.state.genre} />
                             </Suspense>
                         </Paper>
@@ -282,6 +286,7 @@ class Dashboard extends React.Component {
                             <Typography variant="caption" sx={{mt:1}}> *Prime Video releases the number of subscribers only at the end of the year </Typography>
                         </Paper>
                     </Grid>
+
 
                     {/* Bins selection */}
                     <Grid item xs={12} md={12} lg={12} sx={{mb:0, pb:0}}>
@@ -368,15 +373,41 @@ class Dashboard extends React.Component {
                         </Paper>
                     </Grid>
 
-                    
-                    <Grid item>
+
+                    {/* Top10 actors */}
+                    <Grid item xs={12} md={4} lg={4}>
                         <Paper
                         sx={{
                         p: 2,
                         display: 'flex',
                         flexDirection: 'column',
+                        alignItems: 'center'
                         }}>
-                            <img src={logo} className="App-logo" alt="logo" />
+                            <Typography variant="h5"> Top 10 actors </Typography>
+                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
+                                <TopTen data={this.state.data} platform={this.state.platform} 
+                                    type={this.state.type}
+                                    genre={this.state.genre} actors={true} />
+                            </Suspense>
+                        </Paper>
+                    </Grid>
+
+
+                    {/* Top10 directors */}
+                    <Grid item xs={12} md={4} lg={4}>
+                        <Paper
+                        sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
+                        }}>
+                            <Typography variant="h5"> Top 10 directors </Typography>
+                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
+                                <TopTen data={this.state.data} platform={this.state.platform} 
+                                    type={this.state.type}
+                                    genre={this.state.genre} actors={false} />
+                            </Suspense>
                         </Paper>
                     </Grid>
                 </Grid>
