@@ -1,30 +1,16 @@
 {
   "files": {
     "main.css": "/streaming-platforms-analytics/static/css/main.41917932.css",
-    "main.js": "/streaming-platforms-analytics/static/js/main.84a17b6a.js",
-    "static/js/141.a5317927.chunk.js": "/streaming-platforms-analytics/static/js/141.a5317927.chunk.js",
-    "static/js/476.cc375c6d.chunk.js": "/streaming-platforms-analytics/static/js/476.cc375c6d.chunk.js",
-    "static/js/496.bc62d49f.chunk.js": "/streaming-platforms-analytics/static/js/496.bc62d49f.chunk.js",
-    "static/js/807.94c3cdec.chunk.js": "/streaming-platforms-analytics/static/js/807.94c3cdec.chunk.js",
-    "static/js/759.1da18471.chunk.js": "/streaming-platforms-analytics/static/js/759.1da18471.chunk.js",
-    "static/js/864.7416bde3.chunk.js": "/streaming-platforms-analytics/static/js/864.7416bde3.chunk.js",
-    "static/js/716.75b61767.chunk.js": "/streaming-platforms-analytics/static/js/716.75b61767.chunk.js",
+    "main.js": "/streaming-platforms-analytics/static/js/main.1659aad3.js",
     "static/media/sauron.png": "/streaming-platforms-analytics/static/media/sauron.4dc8e5c45ebb591e167a.png",
     "static/media/data.csv": "/streaming-platforms-analytics/static/media/data.b2d070767f7211ceacba.csv",
     "static/media/revenues.csv": "/streaming-platforms-analytics/static/media/revenues.576bd8ddc03265c9eb93.csv",
     "index.html": "/streaming-platforms-analytics/index.html",
     "main.41917932.css.map": "/streaming-platforms-analytics/static/css/main.41917932.css.map",
-    "main.84a17b6a.js.map": "/streaming-platforms-analytics/static/js/main.84a17b6a.js.map",
-    "141.a5317927.chunk.js.map": "/streaming-platforms-analytics/static/js/141.a5317927.chunk.js.map",
-    "476.cc375c6d.chunk.js.map": "/streaming-platforms-analytics/static/js/476.cc375c6d.chunk.js.map",
-    "496.bc62d49f.chunk.js.map": "/streaming-platforms-analytics/static/js/496.bc62d49f.chunk.js.map",
-    "807.94c3cdec.chunk.js.map": "/streaming-platforms-analytics/static/js/807.94c3cdec.chunk.js.map",
-    "759.1da18471.chunk.js.map": "/streaming-platforms-analytics/static/js/759.1da18471.chunk.js.map",
-    "864.7416bde3.chunk.js.map": "/streaming-platforms-analytics/static/js/864.7416bde3.chunk.js.map",
-    "716.75b61767.chunk.js.map": "/streaming-platforms-analytics/static/js/716.75b61767.chunk.js.map"
+    "main.1659aad3.js.map": "/streaming-platforms-analytics/static/js/main.1659aad3.js.map"
   },
   "entrypoints": [
     "static/css/main.41917932.css",
-    "static/js/main.84a17b6a.js"
+    "static/js/main.1659aad3.js"
   ]
 }
