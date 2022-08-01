@@ -1,10 +1,9 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { csv } from 'd3-fetch';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import InputLabel from '@mui/material/InputLabel';
@@ -21,19 +20,22 @@ import FormLabel from '@mui/material/FormLabel';
 import IconButton from '@mui/material/IconButton';
 import InfoIcon from '@mui/icons-material/InfoOutlined';
 
+
 import DialogInfo from './VisualizationComponents/DialogInfo';
 import ScrollTop from './VisualizationComponents/ScrollTop';
+import Treemap from './VisualizationComponents/Treemap';
+import Counter from './VisualizationComponents/Counter';
+import CounterDialog from './VisualizationComponents/CounterDialog';
+import RevenuesLinePlot from './VisualizationComponents/RevenuesLinePlot';
+import SubsLinePlot from './VisualizationComponents/SubsLinePlot';
+import VoteHistogram from './VisualizationComponents/VoteHistogram';
+import HistDialog from  './VisualizationComponents/HistDialog';
+import TopTen from './VisualizationComponents/TopTen';
+
+
 import data from '../data/data.csv';
 import revenues from '../data/revenues.csv';
-//import logo from '../img/sauron.png';
-//import '../css/App.css';
 
-const Treemap = React.lazy(() => import('./VisualizationComponents/Treemap'));
-const Counter = React.lazy(() => import('./VisualizationComponents/Counter'));
-const RevenuesLinePlot = React.lazy(() => import('./VisualizationComponents/RevenuesLinePlot'));
-const SubsLinePlot = React.lazy(() => import('./VisualizationComponents/SubsLinePlot'));
-const VoteHistogram = React.lazy(() => import('./VisualizationComponents/VoteHistogram'));
-const TopTen = React.lazy(() => import('./VisualizationComponents/TopTen'));
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -45,10 +47,16 @@ class Dashboard extends React.Component {
             genre: null,
             revenues: null,
             openDialogInfo: false,
+            openStatInfo: false,
+            openHistInfo: false,
             ticks: 10
         };
         this.handleOpenDialogInfo = this.handleOpenDialogInfo.bind(this);
         this.handleCloseDialogInfo = this.handleCloseDialogInfo.bind(this);
+        this.handleOpenStatInfo = this.handleOpenStatInfo.bind(this);
+        this.handleCloseStatInfo = this.handleCloseStatInfo.bind(this);
+        this.handleOpenHistInfo = this.handleOpenHistInfo.bind(this);
+        this.handleCloseHistInfo = this.handleCloseHistInfo.bind(this);
     }
 
 
@@ -95,6 +103,22 @@ class Dashboard extends React.Component {
 
     handleCloseDialogInfo() {
         this.setState({openDialogInfo: false});
+    }
+
+    handleOpenStatInfo() {
+        this.setState({openStatInfo: true});
+    }
+
+    handleCloseStatInfo() {
+        this.setState({openStatInfo: false});
+    }
+
+    handleOpenHistInfo() {
+        this.setState({openHistInfo: true});
+    }
+
+    handleCloseHistInfo() {
+        this.setState({openHistInfo: false});
     }
 
 
@@ -222,10 +246,8 @@ class Dashboard extends React.Component {
                         alignItems: 'center',
                         }}>
                             <Typography variant="h5"> Streaming platforms treemap </Typography>
-                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <Treemap data={this.state.data} width={400} height={300} 
-                                    platform={this.state.platform} type={this.state.type} genre={this.state.genre} />
-                            </Suspense>
+                            <Treemap data={this.state.data} width={400} height={300} 
+                            platform={this.state.platform} type={this.state.type} genre={this.state.genre} />
                         </Paper>
                     </Grid>
 
@@ -239,11 +261,23 @@ class Dashboard extends React.Component {
                         flexDirection: 'column',
                         alignItems: 'center',
                         }}>
-                            <Typography variant="h5"> Statistics </Typography>
-                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <Counter data={this.state.data} platform={this.state.platform}
-                                 type={this.state.type} genre={this.state.genre} />
-                            </Suspense>
+                            <Stack direction="row" justifyContent="center-end" alignItems='center' spacing={1}>
+                            <IconButton
+                                aria-label="info-stat"
+                                aria-controls="info-data"
+                                aria-haspopup="true"
+                                size='small'
+                                onClick={this.handleOpenStatInfo}
+                                >
+                                    <InfoIcon  sx={{ color: 'background.contrastText', fontSize: 15}} />
+                                </IconButton>
+                                <CounterDialog
+                                open={this.state.openStatInfo}
+                                handleClose={this.handleCloseStatInfo} />
+                                <Typography variant="h5"> Statistics </Typography>
+                            </Stack>
+                            <Counter data={this.state.data} platform={this.state.platform}
+                            type={this.state.type} genre={this.state.genre} />
                         </Paper>
                     </Grid>
 
@@ -258,11 +292,9 @@ class Dashboard extends React.Component {
                         alignItems: 'center'
                         }}>
                             <Typography variant="h5"> Revenues </Typography>
-                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <RevenuesLinePlot rev={this.state.revenues}
-                                width={1000} height={500}  
-                                platform={this.state.platform} />
-                            </Suspense>
+                            <RevenuesLinePlot rev={this.state.revenues}
+                            width={1000} height={500}  
+                            platform={this.state.platform} />
                             <Typography variant="caption" sx={{mt:1}}> *Prime Video revenue includes the entire Amazon Prime subscriptions </Typography>
                         </Paper>
                     </Grid>
@@ -278,11 +310,9 @@ class Dashboard extends React.Component {
                         alignItems: 'center'
                         }}>
                             <Typography variant="h5"> Subscriptions </Typography>
-                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <SubsLinePlot subs={this.state.revenues}
-                                width={1000} height={500}  
-                                platform={this.state.platform} />
-                            </Suspense>
+                            <SubsLinePlot subs={this.state.revenues}
+                            width={1000} height={500}  
+                            platform={this.state.platform} />
                             <Typography variant="caption" sx={{mt:1}}> *Prime Video releases the number of subscribers only at the end of the year </Typography>
                         </Paper>
                     </Grid>
@@ -298,20 +328,35 @@ class Dashboard extends React.Component {
                         alignItems: 'center'
                         }}>
                             <FormControl>
-                                    <FormLabel id="number-of-bins" align='center'> # Histogram bins </FormLabel>
-                                    <RadioGroup
-                                    row
-                                    aria-labelledby="number-of-bins"
-                                    name="row-radio-button"
-                                    value={this.state.ticks}
-                                    onChange={ (event) => {
-                                        this.setState({ ticks: event.target.value });
-                                    }}
+                                <Stack direction="row" justifyContent="center-end" alignItems='center' spacing={1}>
+                                    <IconButton
+                                    aria-label="info-stat"
+                                    aria-controls="info-data"
+                                    aria-haspopup="true"
+                                    size='small'
+                                    onClick={this.handleOpenHistInfo}
                                     >
-                                        <FormControlLabel value={10} control={<Radio />} label="10" />
-                                        <FormControlLabel value={20} control={<Radio />} label="20" />
-                                        <FormControlLabel value={50} control={<Radio />} label="50" />
-                                        <FormControlLabel value={100} control={<Radio />} label="100" />
+                                        <InfoIcon  sx={{ color: 'background.contrastText', fontSize: 15}} />
+                                    </IconButton>
+                                    <HistDialog
+                                    open={this.state.openHistInfo}
+                                    handleClose={this.handleCloseHistInfo} />
+                                    <FormLabel id="number-of-bins" align='center'> # Histogram bins </FormLabel>
+                                </Stack>
+
+                                <RadioGroup
+                                row
+                                aria-labelledby="number-of-bins"
+                                name="row-radio-button"
+                                value={this.state.ticks}
+                                onChange={ (event) => {
+                                    this.setState({ ticks: event.target.value });
+                                }}
+                                >
+                                    <FormControlLabel value={10} control={<Radio />} label="10" />
+                                    <FormControlLabel value={20} control={<Radio />} label="20" />
+                                    <FormControlLabel value={50} control={<Radio />} label="50" />
+                                    <FormControlLabel value={100} control={<Radio />} label="100" />
                                 </RadioGroup>
                             </FormControl>
                         </Paper>
@@ -328,11 +373,9 @@ class Dashboard extends React.Component {
                         alignItems: 'center'
                         }}>
                             <Typography variant="h5"> IMDb ratings </Typography>
-                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <VoteHistogram data={this.state.data} width={500} height={500} 
-                                    platform={this.state.platform} type={this.state.type}
-                                    genre={this.state.genre} vote='imdb' tick={this.state.ticks}/>
-                            </Suspense>
+                            <VoteHistogram data={this.state.data} width={500} height={500} 
+                            platform={this.state.platform} type={this.state.type}
+                            genre={this.state.genre} vote='imdb' tick={this.state.ticks}/>
                         </Paper>
                     </Grid>
 
@@ -347,11 +390,9 @@ class Dashboard extends React.Component {
                         alignItems: 'center'
                         }}>
                             <Typography variant="h5"> RottenTomatoes ratings </Typography>
-                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <VoteHistogram data={this.state.data} width={500} height={500} 
-                                    platform={this.state.platform} type={this.state.type}
-                                    genre={this.state.genre} vote='rt' tick={this.state.ticks} />
-                            </Suspense>
+                            <VoteHistogram data={this.state.data} width={500} height={500} 
+                            platform={this.state.platform} type={this.state.type}
+                            genre={this.state.genre} vote='rt' tick={this.state.ticks} />
                         </Paper>
                     </Grid>
 
@@ -365,11 +406,9 @@ class Dashboard extends React.Component {
                         alignItems: 'center'
                         }}>
                             <Typography variant="h5"> Metacritic ratings </Typography>
-                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <VoteHistogram data={this.state.data} width={500} height={500} 
-                                    platform={this.state.platform} type={this.state.type}
-                                    genre={this.state.genre} vote='mc' tick={this.state.ticks} />
-                            </Suspense>
+                            <VoteHistogram data={this.state.data} width={500} height={500} 
+                            platform={this.state.platform} type={this.state.type}
+                            genre={this.state.genre} vote='mc' tick={this.state.ticks} />
                         </Paper>
                     </Grid>
 
@@ -384,11 +423,9 @@ class Dashboard extends React.Component {
                         alignItems: 'center'
                         }}>
                             <Typography variant="h5"> Top 10 actors </Typography>
-                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <TopTen data={this.state.data} platform={this.state.platform} 
-                                    type={this.state.type}
-                                    genre={this.state.genre} actors={true} />
-                            </Suspense>
+                            <TopTen data={this.state.data} platform={this.state.platform} 
+                            type={this.state.type}
+                            genre={this.state.genre} actors={true} />
                         </Paper>
                     </Grid>
 
@@ -403,11 +440,8 @@ class Dashboard extends React.Component {
                         alignItems: 'center'
                         }}>
                             <Typography variant="h5"> Top 10 directors </Typography>
-                            <Suspense fallback={<CircularProgress sx={{ color: 'secondary.main' }} />}>
-                                <TopTen data={this.state.data} platform={this.state.platform} 
-                                    type={this.state.type}
-                                    genre={this.state.genre} actors={false} />
-                            </Suspense>
+                            <TopTen data={this.state.data} platform={this.state.platform} 
+                            type={this.state.type} genre={this.state.genre} actors={false} />
                         </Paper>
                     </Grid>
                 </Grid>
