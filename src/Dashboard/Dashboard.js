@@ -295,7 +295,7 @@ class Dashboard extends React.Component {
                             <RevenuesLinePlot rev={this.state.revenues}
                             width={1000} height={500}  
                             platform={this.state.platform} />
-                            <Typography variant="caption" sx={{mt:1}}> *Prime Video revenue includes the entire Amazon Prime subscriptions </Typography>
+                            <Typography variant="caption" sx={{mt:1}}> *Prime Video revenues include the entire Amazon Prime subscriptions </Typography>
                         </Paper>
                     </Grid>
 
@@ -364,7 +364,32 @@ class Dashboard extends React.Component {
 
 
                     {/* IMDb ratings */}
-                    <Grid item xs={12} md={4} lg={4}>
+                    {/* All */}
+                    <Grid item xs={12} md={12} lg={12}
+                    sx={{ display: this.state.data && !this.state.platform? 'block' : 'none' }}>
+                        <Paper
+                        sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center'
+                        }}>
+                                <Typography variant="h5" sx={{ m: 2 }}> IMDb ratings </Typography>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                platform='Netflix' type={this.state.type}
+                                genre={this.state.genre} vote='imdb' tick={this.state.ticks}/>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                platform='Prime' type={this.state.type}
+                                genre={this.state.genre} vote='imdb' tick={this.state.ticks}/>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                platform='Disney' type={this.state.type}
+                                genre={this.state.genre} vote='imdb' tick={this.state.ticks}/>
+                        </Paper>
+                    </Grid>
+
+                    {/* IMDb Platform selected */}
+                    <Grid item xs={12} md={4} lg={4}
+                    sx={{ display: this.state.data && this.state.platform? 'block' : 'none' }}>
                         <Paper
                         sx={{
                         p: 2,
@@ -381,7 +406,32 @@ class Dashboard extends React.Component {
 
 
                     {/* Rotten Tomatoes ratings */}
-                    <Grid item xs={12} md={4} lg={4}>
+                    {/* All */}
+                    <Grid item xs={12} md={12} lg={12}
+                    sx={{ display: this.state.data && !this.state.platform? 'block' : 'none' }}>
+                        <Paper
+                        sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center'
+                        }}>
+                                <Typography variant="h5" sx={{ m: 2 }}> RottenTomatoes ratings </Typography>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                platform='Netflix' type={this.state.type}
+                                genre={this.state.genre} vote='rt' tick={this.state.ticks}/>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                platform='Prime' type={this.state.type}
+                                genre={this.state.genre} vote='rt' tick={this.state.ticks}/>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                platform='Disney' type={this.state.type}
+                                genre={this.state.genre} vote='rt' tick={this.state.ticks}/>
+                        </Paper>
+                    </Grid>
+
+                    {/* Rotten Platform selected */}
+                    <Grid item xs={12} md={4} lg={4}
+                    sx={{ display: this.state.data && this.state.platform? 'block' : 'none' }}>
                         <Paper
                         sx={{
                         p: 2,
@@ -397,7 +447,32 @@ class Dashboard extends React.Component {
                     </Grid>
 
                     {/* Metacritic ratings */}
-                    <Grid item xs={12} md={4} lg={4}>
+                    {/* All */}
+                    <Grid item xs={12} md={12} lg={12}
+                    sx={{ display: this.state.data && !this.state.platform? 'block' : 'none' }}>
+                        <Paper
+                        sx={{
+                        p: 2,
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center'
+                        }}>
+                                <Typography variant="h5" sx={{ m: 2 }}> Metacritic ratings </Typography>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                platform='Netflix' type={this.state.type}
+                                genre={this.state.genre} vote='mc' tick={this.state.ticks}/>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                platform='Prime' type={this.state.type}
+                                genre={this.state.genre} vote='mc' tick={this.state.ticks}/>
+                                <VoteHistogram data={this.state.data} width={500} height={500} 
+                                platform='Disney' type={this.state.type}
+                                genre={this.state.genre} vote='mc' tick={this.state.ticks}/>
+                        </Paper>
+                    </Grid>
+
+                    {/* Metacritic Platform selected */}
+                    <Grid item xs={12} md={4} lg={4}
+                    sx={{ display: this.state.data && this.state.platform? 'block' : 'none' }}>
                         <Paper
                         sx={{
                         p: 2,
